@@ -1,0 +1,3210 @@
+[
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -46
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -43
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -67
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -59
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -88
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -95
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -93
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -35
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -43
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -72
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -58
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -99
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -93
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -47
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -51
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -56
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -58
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -90
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -99
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -56
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -43
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -68
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -60
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -89
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -99
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -48
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -41
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -68
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -58
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -89
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -84
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -48
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -45
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -54
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -56
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -90
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -47
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -49
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -60
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -52
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -85
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -84
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -94
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -43
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -57
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -52
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -88
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -82
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -90
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -49
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -44
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -53
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -54
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -83
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -94
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -49
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -50
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -57
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -52
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -94
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -83
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -44
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -46
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -53
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -52
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -83
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -95
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -45
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -45
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -52
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -47
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -94
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -78
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -92
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -48
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -54
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -48
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -48
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -96
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -73
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -94
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -46
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -45
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -50
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -50
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -80
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -97
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -42
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -43
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -52
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -52
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -88
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -83
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -43
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -50
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -50
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -48
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -76
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -94
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -47
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -49
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -63
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -48
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -81
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -97
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -40
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -46
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -65
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -46
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -80
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -42
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -41
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -58
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -51
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -95
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -85
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -39
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -46
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -43
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -52
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -85
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -47
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -50
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -61
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -55
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -88
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -86
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -101
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -36
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -67
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -59
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -94
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -88
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -95
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -50
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -57
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -57
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -94
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -89
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -94
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -37
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -55
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -62
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -57
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -92
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -97
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -41
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -55
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -67
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -58
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -91
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -92
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -53
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -63
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -63
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -91
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -100
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -39
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -56
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -73
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -68
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -87
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -98
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -97
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -47
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -47
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -75
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -73
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -102
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -102
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -40
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -56
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -71
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -71
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -89
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -98
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -95
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -49
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -54
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -79
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -69
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -98
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -101
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -46
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -52
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -71
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -108
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -100
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -43
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -55
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -73
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -88
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -102
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -92
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -41
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -60
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -83
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -71
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -88
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -111
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -99
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -39
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -59
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -84
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -69
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -95
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -112
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -92
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -39
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -50
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -83
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -68
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -106
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -100
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -38
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -53
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -82
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -69
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -110
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -41
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -53
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -82
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -74
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -110
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -90
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -41
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -55
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -78
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -72
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -94
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -109
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -91
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -41
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -63
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -77
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -71
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -109
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -105
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -44
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -57
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -74
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -73
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -88
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -111
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -97
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -41
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -54
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -78
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -75
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -109
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -97
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -37
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -53
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -85
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -89
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -112
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -100
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -38
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -58
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -70
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -70
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -104
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -95
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -32
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -53
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -78
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -68
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -110
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -31
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -56
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -74
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -104
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -93
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -35
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -56
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -69
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -61
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -111
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -92
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -38
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -53
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -78
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -98
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -33
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -59
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -76
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -68
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -88
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -97
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -94
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -36
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -63
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -68
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -66
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -98
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -36
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -54
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -77
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -67
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -87
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -97
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -35
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -59
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -68
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -94
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -95
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -32
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -64
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -63
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -65
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -95
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -56
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -70
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -66
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -88
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -92
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -33
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -63
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -65
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -90
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -100
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -32
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -55
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -62
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -64
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -90
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -97
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -34
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -54
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -60
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -65
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -87
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -33
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -59
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -59
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -68
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -89
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -86
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -97
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -33
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -57
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -61
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -68
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -82
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -97
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -25
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -54
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -53
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -68
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -87
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -37
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -62
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -50
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -70
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -79
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -93
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -34
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -57
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -54
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -69
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -76
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -100
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -31
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -56
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -51
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -70
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -94
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -82
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -29
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -62
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -66
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -68
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -95
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -77
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -27
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -57
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -49
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -74
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -86
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -84
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -34
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -68
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -52
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -74
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -82
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -29
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -63
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -51
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -72
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -78
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -32
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -52
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -73
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -83
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -29
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -60
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -49
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -74
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -82
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -94
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -27
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -62
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -46
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -69
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -80
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -29
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -59
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -56
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -64
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -86
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -28
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -70
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -51
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -65
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -83
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -103
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -27
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -60
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -60
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -65
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -89
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -87
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -95
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -28
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -65
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -63
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -65
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -91
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -93
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -31
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -60
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -59
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -61
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -91
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -30
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -66
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -74
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -57
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -92
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -25
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -67
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -74
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -52
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -102
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -93
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -30
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -63
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -68
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -53
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -94
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -98
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -29
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -60
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -70
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -50
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -102
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -101
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -24
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -68
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -70
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -50
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -99
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -100
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -25
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -58
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -75
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -48
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -94
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -99
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -21
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -69
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -86
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -45
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -88
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -100
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -99
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -31
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -75
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -43
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -89
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -106
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -92
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -20
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -65
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -76
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -42
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -89
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -107
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -92
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -21
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -67
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -77
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -38
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -109
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -92
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -67
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -73
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -41
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -110
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -97
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -26
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -58
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -88
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -39
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -107
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -98
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -21
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -65
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -77
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -38
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -115
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -96
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -29
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -70
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -86
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -39
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -88
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -109
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -93
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -23
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -63
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -85
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -38
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -94
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -111
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -94
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -29
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -74
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -84
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -34
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -89
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -110
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -97
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -22
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -62
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -91
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -37
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -112
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -100
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -22
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -62
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -72
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -42
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -107
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -92
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -23
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -65
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -78
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -45
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -108
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -95
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -25
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -65
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -46
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -92
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -110
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -101
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -25
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -68
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -80
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -50
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -90
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -105
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -95
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -20
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -76
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -83
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -53
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -88
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -107
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -95
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -20
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -72
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -75
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -56
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -91
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -103
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -93
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -27
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -72
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -70
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -51
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -89
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -103
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -101
+      },
+      {
+        "tagId": "ca:15:ac:2e:e6:fc",
+        "rssi": -20
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -70
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -74
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -55
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -96
+      }
+    ]
+  },
+  {
+    "stationId": "STATION14",
+    "tags": [
+      {
+        "tagId": "bc:57:29:05:8e:d6",
+        "rssi": -94
+      },
+      {
+        "tagId": "fb:de:e9:40:fb:2b",
+        "rssi": -71
+      },
+      {
+        "tagId": "54:ab:f6:5e:4e:03",
+        "rssi": -66
+      },
+      {
+        "tagId": "dc:0a:e4:d2:da:e3",
+        "rssi": -54
+      },
+      {
+        "tagId": "cb:fa:84:59:d7:06",
+        "rssi": -93
+      },
+      {
+        "tagId": "23:97:5e:7f:36:45",
+        "rssi": -101
+      }
+    ]
+  }
+]
