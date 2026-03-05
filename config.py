@@ -1,39 +1,40 @@
-# config.py
-
-# ── MQTT Settings ─────────────────────────────────────
-MQTT_BROKER        = ""
+# ── MQTT ──────────────────────────────────────────────
+MQTT_BROKER        = "192.168.1.11"
 MQTT_PORT          = 1883
 MQTT_USERNAME      = ""
 MQTT_PASSWORD      = ""
 
-# ── Station Settings ──────────────────────────────────
-STATION_IDS        = [1,2,3,4]
-MQTT_TOPIC_PATTERN = "/nodejs/mqtt/STATION{}"
+# ── Stations & their known coordinates (meters) ───────
+STATION_IDS = [14, 15, 16, 17]
+MQTT_TOPIC_PATTERN = "/nodejs/mqtt/#"
 
-# ── Station Physical Positions ────────────────────────
-STATION_POSITIONS  = {
-    "STATION1": (0.0,  0.0),
-    "STATION2": (10.0, 0.0),
-    "STATION3": (5.0,  8.0),
-    "STATION4": ()
+STATION_POSITIONS = {
+    "STATION1": (1.6, 0.0, 1.5),
+    "STATION2": (0.0, 2.0, 1.5),
+    "STATION3": (2.0, 3.6, 1.5),
+    "STATION4": (3.8, 1.8, 1.5)
 }
 
-# ── Model Settings ────────────────────────────────────
-SEQ_LEN       = 5
-N_FEATURES    = 1
-HIDDEN_SIZE   = 64
-NUM_LAYERS    = 2
-DROPOUT       = 0.2
+# ── Room Dimensions (meters) ──────────────────────────
+ROOM_W = 3.8
+ROOM_H =  3.6
+ROOM_Z = 3.0
 
-# ── FIX: Use full absolute path ───────────────────────
-MODEL_PATH    = "/Users/lnarayanansk/Documents/Doodil2r/best_model.pth"
+# ── Model ─────────────────────────────────────────────
+SEQ_LEN     = 1    # timesteps of RSSI history
+N_FEATURES  = 20      # 4stationsx5features
+N_OUTPUTS   = 3       # predict (x, y, z)
+HIDDEN_SIZE = 128
+NUM_LAYERS  = 2
+DROPOUT     = 0.2
+MODEL_PATH  = "/Users/lnarayanansk/Documents/Doodil2r/position_model.pth"
 
-# ── RSSI Range ────────────────────────────────────────
-RSSI_MIN      = -120.0
-RSSI_MAX      =    0.0
-TX_POWER      =  -59.0
-PATH_LOSS_N   =    2.0
+# ── Normalization ─────────────────────────────────────
+RSSI_MIN = -120.0
+RSSI_MAX =    0.0
 
-# ── JSON File Settings ────────────────────────────────
-JSON_FILE     = "/Users/lnarayanansk/Documents/Doodil2r/beacon_data.json"
-JSON_REPEAT   = 1
+# ── Data ──────────────────────────────────────────────
+TRAINING_DATA_PATH = "/Users/lnarayanansk/Documents/Doodil2r/training_data.json"
+JSON_FILE          = "/Users/lnarayanansk/Documents/Doodil2r/beacon_data.json"
+JSON_REPEAT        = 1
+TARGET_TAG = "d6:06:9c:7e:ba:f7"
