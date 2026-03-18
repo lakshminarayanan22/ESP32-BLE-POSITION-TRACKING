@@ -21,19 +21,20 @@ Trains the indoor positioning LSTM model using the PSO-Adam hybrid approach:
         point for precise local search that PSO alone cannot achieve.
 
 Data Format (CSV):
-    Columns: start_time, end_time, station, tag,
-             rssi_value_1, rssi_value_2, rssi_value_3, rssi_value_4,
-             true_x, true_y, true_z
+    Columns: tag_id,
+             rssi_11, rssi_12, rssi_13, rssi_14,
+             rssi_41..rssi_50,
+             true_x, true_y, true_z   (z read but not predicted)
 
 Feature Vector (per time step):
-    [mean, std, min, max, count] × 4 stations = 20 values
+    [mean, std, min, max, count] × 14 stations = 70 values
     All normalized to [0, 1].
 
 LSTM Input Shape:
-    (batch, SEQ_LEN=8, N_FEATURES=20) — temporal sliding window
+    (batch, SEQ_LEN=8, N_FEATURES=70) — temporal sliding window
 
 Output Shape:
-    (batch, 3) — normalized (x, y, z) coordinates
+    (batch, 2) — normalized (x, y) coordinates
 """
 
 import csv
@@ -54,7 +55,7 @@ from config import (
     SEQ_LEN, N_FEATURES, N_OUTPUTS,
     HIDDEN_SIZE, NUM_LAYERS, DROPOUT,
     MODEL_PATH, RSSI_MIN, RSSI_MAX,
-    ROOM_W, ROOM_H, ROOM_Z,
+    ROOM_W, ROOM_H,
     STATION_POSITIONS
 )
 
@@ -68,44 +69,22 @@ TRAIN_SPLIT       = 0.8
 USE_PSO           = True    # Set False to skip PSO and use config defaults
 
 STATION_ORDER     = list(STATION_POSITIONS.keys())
-RSSI_COLS         = ["rssi_value_1", "rssi_value_2",
-                      "rssi_value_3", "rssi_value_4"]
 STATS_PER_STATION = 5   # mean, std, min, max, count
+RSSI_WINDOW_SIZE  = 4   # matches tag_processing.py — for count normalisation
+
+# CSV column for each station: rssi_11, rssi_12, ..., rssi_50
+RSSI_COLS_NEW     = [f"rssi_{sid.replace('STATION','')}" for sid in STATION_ORDER]
 
 
 # ── Normalize / Denormalize ───────────────────────────────────────────────────
 def norm_rssi(v):  return (v - RSSI_MIN) / (RSSI_MAX - RSSI_MIN)
 def norm_x(v):     return v / ROOM_W
 def norm_y(v):     return v / ROOM_H
-def norm_z(v):     return v / ROOM_Z
 def denorm_x(v):   return v * ROOM_W
 def denorm_y(v):   return v * ROOM_H
-def denorm_z(v):   return v * ROOM_Z
 
 
-# ── Extract Non-Null RSSI Values From One Row ─────────────────────────────────
-def extract_rssi_values(row: dict) -> list:
-    """
-    Read rssi_value_1..4 and return only non-empty float values.
-
-    Examples:
-        row has -67, -71, '',  ''  → returns [-67.0, -71.0]
-        row has -67, '',  '',  ''  → returns [-67.0]
-        row has -67, -71, -69, -72 → returns [-67.0, -71.0, -69.0, -72.0]
-        row has '',  '',  '',  ''  → returns []
-    """
-    values = []
-    for col in RSSI_COLS:
-        raw = row.get(col, "").strip()
-        if raw:
-            try:
-                values.append(float(raw))
-            except ValueError:
-                pass
-    return values
-
-
-# ── Compute 5 Stats From Variable-Length RSSI List ───────────────────────────
+# ── Compute 5 Stats From RSSI List ────────────────────────────────────────────
 def compute_station_stats(rssi_values: list) -> list:
     """
     Compute 5 normalized statistics from non-null RSSI values for one station.
@@ -134,7 +113,7 @@ def compute_station_stats(rssi_values: list) -> list:
     norm_std   = std_v / ((RSSI_MAX - RSSI_MIN) / 2.0)
     norm_min   = norm_rssi(min_v)
     norm_max   = norm_rssi(max_v)
-    norm_count = count_v / len(RSSI_COLS)   # 0.25, 0.5, 0.75, 1.0
+    norm_count = count_v / float(RSSI_WINDOW_SIZE)   # 0.25 / 0.5 / 0.75 / 1.0
 
     return [norm_mean, norm_std, norm_min, norm_max, norm_count]
 
@@ -142,127 +121,71 @@ def compute_station_stats(rssi_values: list) -> list:
 # ── Load CSV ──────────────────────────────────────────────────────────────────
 def load_csv(filepath: str) -> list:
     """
-    Load training CSV and build feature/target pairs.
+    Load training CSV and build feature/target pairs for LSTM sequencing.
 
-    CSV format:
-        start_time, end_time, station, tag,
-        rssi_value_1, rssi_value_2, rssi_value_3, rssi_value_4,
-        true_x, true_y, true_z
+    CSV format (one row = one complete snapshot, 18 columns):
+        tag_id, rssi_11, rssi_12, rssi_13, rssi_14,
+                rssi_41, rssi_42, rssi_43, rssi_44, rssi_45,
+                rssi_46, rssi_47, rssi_48, rssi_49, rssi_50,
+                true_x, true_y, true_z
 
-    Feature vector per interval = 20 values:
-        [mean, std, min, max, count] × 4 stations
+    Feature vector per row = 70 values:
+        [mean, std, min, max, count] × 14 stations
 
-    Returns sorted list of interval dicts:
-        [{"feature": [20 floats], "target": [3 floats]}, ...]
+    Returns list of snapshot dicts:
+        [{"feature": [70 floats], "target": [norm_x, norm_y]}, ...]
+    build_sequences() then creates SEQ_LEN-step sliding windows.
     """
-    raw    = defaultdict(lambda: {sid: [] for sid in STATION_ORDER})
-    coords = {}
-
-    total_rows      = 0
-    skipped_station = 0
-    skipped_no_rssi = 0
-    found_stations  = set()
+    intervals   = []
+    total_rows  = 0
+    skipped     = 0
 
     with open(filepath, "r") as f:
         reader = csv.DictReader(f)
-        print(f"[DEBUG] CSV Headers        : {reader.fieldnames}\n")
+        print(f"[DEBUG] CSV Headers : {reader.fieldnames}\n")
 
         for row in reader:
             total_rows += 1
-
-            start   = row.get("start_time", "").strip()
-            end     = row.get("end_time",   "").strip()
-            station = row.get("station",    "").upper().strip()
-
-            if not start or not end:
+            try:
+                tx = float(row["true_x"])
+                ty = float(row["true_y"])
+            except (KeyError, ValueError):
+                skipped += 1
                 continue
 
-            if station not in STATION_ORDER:
-                skipped_station += 1
-                found_stations.add(station)
-                continue
-
-            rssi_values = extract_rssi_values(row)
-            if not rssi_values:
-                skipped_no_rssi += 1
-                continue
-
-            raw[(start, end)][station].extend(rssi_values)
-
-            key = (start, end)
-            if key not in coords:
+            feature_vec = []
+            for col in RSSI_COLS_NEW:
+                raw = row.get(col, "").strip()
                 try:
-                    coords[key] = (
-                        float(row["true_x"]),
-                        float(row["true_y"]),
-                        float(row["true_z"])
-                    )
-                except (KeyError, ValueError):
-                    pass
+                    rssi_val = float(raw)
+                    stats = compute_station_stats([rssi_val]) \
+                            if -120 <= rssi_val <= 0 \
+                            else [0.0, 0.0, 0.0, 0.0, 0.0]
+                except (ValueError, TypeError):
+                    stats = [0.0, 0.0, 0.0, 0.0, 0.0]
+                feature_vec.extend(stats)
 
-    print(f"[DEBUG] Rows read              : {total_rows}")
-    print(f"[DEBUG] Skipped (bad station)  : {skipped_station}")
-    print(f"[DEBUG] Skipped (no RSSI)      : {skipped_no_rssi}")
-    if found_stations - set(STATION_ORDER):
-        print(f"[DEBUG] Unknown stations       : "
-              f"{found_stations - set(STATION_ORDER)}")
-        print(f"[DEBUG] Expected stations      : {STATION_ORDER}")
-    print(f"[DEBUG] Valid intervals        : {len(raw)}\n")
+            if len(feature_vec) != len(STATION_ORDER) * STATS_PER_STATION:
+                skipped += 1
+                continue
 
-    intervals = []
-    for (start, end), station_readings in sorted(raw.items()):
-        key = (start, end)
-        if key not in coords:
-            continue
+            intervals.append({
+                "feature": feature_vec,
+                "target":  [norm_x(tx), norm_y(ty)]
+            })
 
-        feature_vec = []
-        for sid in STATION_ORDER:
-            rssi_vals = station_readings[sid]
-            stats     = compute_station_stats(rssi_vals)
-            feature_vec.extend(stats)
-
-        assert len(feature_vec) == len(STATION_ORDER) * STATS_PER_STATION
-
-        tx, ty, tz = coords[key]
-        intervals.append({
-            "feature": feature_vec,
-            "target":  [norm_x(tx), norm_y(ty), norm_z(tz)]
-        })
-
-    print(f"[DATA] Intervals loaded        : {len(intervals)}")
-    print(f"[DATA] Feature vector          : "
-          f"{len(STATION_ORDER)} stations × {STATS_PER_STATION} stats = "
+    print(f"[DEBUG] Rows read   : {total_rows}")
+    print(f"[DEBUG] Skipped     : {skipped}")
+    print(f"[DEBUG] Snapshots   : {len(intervals)}")
+    print(f"[DEBUG] Feature dim : {len(STATION_ORDER)} stations "
+          f"× {STATS_PER_STATION} stats = "
           f"{len(STATION_ORDER) * STATS_PER_STATION}")
-    print(f"       └─ per station          : [mean, std, min, max, count]")
-    print(f"[DATA] Target                  : [x, y, z]")
-    print(f"[DATA] Excluded                : start_time, end_time, tag\n")
-
-    _print_value_distribution(raw)
+    print(f"[DEBUG] Target      : [x, y]  (z excluded)\n")
 
     if not intervals:
-        print("[WARN] No intervals built — "
-              "check station names and CSV headers")
+        print("[WARN] No snapshots built — check CSV headers match expected columns")
 
     return intervals
-
-
-def _print_value_distribution(raw: dict):
-    print(f"[DATA] RSSI value count distribution per station:")
-    print(f"  {'STATION':<12}  {'0vals':>6}  {'1val':>6}  "
-          f"{'2vals':>6}  {'3vals':>6}  {'4vals':>6}")
-    print("  " + "-" * 50)
-
-    for sid in STATION_ORDER:
-        counts = defaultdict(int)
-        for interval_stations in raw.values():
-            n = len(interval_stations[sid])
-            counts[n] += 1
-        print(
-            f"  {sid:<12}  "
-            f"{counts[0]:>6}  {counts[1]:>6}  "
-            f"{counts[2]:>6}  {counts[3]:>6}  {counts[4]:>6}"
-        )
-    print()
 
 
 # ── Build Sequences (Temporal Sliding Window) ─────────────────────────────────
@@ -270,13 +193,13 @@ def build_sequences(intervals: list):
     """
     Construct LSTM training sequences using a sliding window of SEQ_LEN steps.
 
-    Each training sample X[i] has shape (SEQ_LEN, 20):
+    Each training sample X[i] has shape (SEQ_LEN, N_FEATURES=70):
         - SEQ_LEN consecutive feature vectors representing the temporal
           RSSI history before position sample i + SEQ_LEN.
         - This enables the LSTM to learn temporal RSSI dynamics.
 
-    X shape: (N, SEQ_LEN, 20)
-    y shape: (N, 3)  →  normalized [x, y, z]
+    X shape: (N, SEQ_LEN, N_FEATURES)
+    y shape: (N, 2)  →  normalized [x, y]
     """
     if len(intervals) < SEQ_LEN + 1:
         print(f"[ERROR] Only {len(intervals)} intervals — "
@@ -292,14 +215,14 @@ def build_sequences(intervals: list):
         ])
         y_all.append(intervals[i + SEQ_LEN]["target"])
 
-    X = np.array(X_all, dtype=np.float32)   # (N, SEQ_LEN, 20)
-    y = np.array(y_all, dtype=np.float32)   # (N, 3)
+    X = np.array(X_all, dtype=np.float32)   # (N, SEQ_LEN, N_FEATURES)
+    y = np.array(y_all, dtype=np.float32)   # (N, 2)
 
     print(f"[DATA] Sequences               : {len(X)}")
     print(f"[DATA] X shape                 : {X.shape}")
-    print(f"       └─ (samples, seq_len={SEQ_LEN}, features=20)")
+    print(f"       └─ (samples, seq_len={SEQ_LEN}, features={X.shape[2]})")
     print(f"[DATA] y shape                 : {y.shape}")
-    print(f"       └─ (samples, x/y/z)\n")
+    print(f"       └─ (samples, x/y)\n")
     return X, y
 
 
@@ -341,7 +264,7 @@ def evaluate(model, loader, criterion, device):
 
 # ── Plot Training Results ─────────────────────────────────────────────────────
 def plot_results(train_losses, val_losses, true_m, pred_m):
-    fig, axes = plt.subplots(1, 4, figsize=(22, 5))
+    fig, axes = plt.subplots(1, 3, figsize=(16, 5))
 
     axes[0].plot(train_losses, label="Train")
     axes[0].plot(val_losses,   label="Val")
@@ -351,7 +274,7 @@ def plot_results(train_losses, val_losses, true_m, pred_m):
     axes[0].legend()
     axes[0].grid(True)
 
-    for idx, label in enumerate(["X", "Y", "Z"]):
+    for idx, label in enumerate(["X", "Y"]):
         ax    = axes[idx + 1]
         limit = min(100, len(true_m))
         ax.plot(true_m[:limit, idx], label=f"True {label}")
@@ -363,7 +286,7 @@ def plot_results(train_losses, val_losses, true_m, pred_m):
         ax.grid(True)
 
     plt.suptitle(
-        f"PSO-LSTM Indoor Positioning — {EPOCHS} Epochs", fontsize=13
+        f"PSO-LSTM 2D Positioning — {EPOCHS} Epochs", fontsize=13
     )
     plt.tight_layout()
     plt.savefig(PLOT_PATH, dpi=150)
@@ -393,8 +316,7 @@ if __name__ == "__main__":
 
     if len(X) == 0:
         print("\n[ERROR] No sequences. Check:")
-        print("  Headers: start_time, end_time, station, tag,")
-        print("           rssi_value_1..4, true_x, true_y, true_z")
+        print("  Headers: tag_id, rssi_11..rssi_50, true_x, true_y, true_z")
         print(f"  Station names match config : {STATION_ORDER}")
         print(f"  Interval count > SEQ_LEN ({SEQ_LEN})")
         sys.exit(1)
@@ -496,17 +418,15 @@ if __name__ == "__main__":
     pred_m = np.stack([
         denorm_x(all_pred[:, 0]),
         denorm_y(all_pred[:, 1]),
-        denorm_z(all_pred[:, 2])
     ], axis=1)
     true_m = np.stack([
         denorm_x(all_true[:, 0]),
         denorm_y(all_true[:, 1]),
-        denorm_z(all_true[:, 2])
     ], axis=1)
 
     errors = np.sqrt(np.sum((pred_m - true_m) ** 2, axis=1))
-    print(f"\n[EVAL] PSO-LSTM 3D Positioning Accuracy:")
-    print(f"[EVAL]   Mean 3D error  : {np.mean(errors):.3f} m")
+    print(f"\n[EVAL] PSO-LSTM 2D Positioning Accuracy:")
+    print(f"[EVAL]   Mean 2D error  : {np.mean(errors):.3f} m")
     print(f"[EVAL]   Median error   : {np.median(errors):.3f} m")
     print(f"[EVAL]   Max error      : {np.max(errors):.3f} m")
     print(f"[EVAL]   Error < 0.5m  : {np.mean(errors < 0.5) * 100:.1f}%")

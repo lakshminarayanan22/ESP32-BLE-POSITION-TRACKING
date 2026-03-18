@@ -23,7 +23,7 @@ Output (predict() → dict):
 
 import numpy as np
 import joblib
-from config import SVM_MODEL_PATH, ROOM_W, ROOM_H, ROOM_Z
+from config import SVM_MODEL_PATH, ROOM_W, ROOM_H
 
 
 class SVMPositionPredictor:
@@ -65,14 +65,12 @@ class SVMPositionPredictor:
             return {"x": 0.0, "y": 0.0, "z": 0.0}
 
         x_in  = np.array(feature_vec, dtype=np.float64).reshape(1, -1)
-        pred  = self.model.predict(x_in)[0]   # shape (3,) — normalised
+        pred  = self.model.predict(x_in)[0]   # shape (2,) — normalised (x, y)
 
         x_m = float(np.clip(pred[0], 0.0, 1.0)) * ROOM_W
         y_m = float(np.clip(pred[1], 0.0, 1.0)) * ROOM_H
-        z_m = float(np.clip(pred[2], 0.0, 1.0)) * ROOM_Z
 
         return {
             "x": round(x_m, 3),
             "y": round(y_m, 3),
-            "z": round(z_m, 3),
         }

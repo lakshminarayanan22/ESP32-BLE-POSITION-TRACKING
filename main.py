@@ -65,7 +65,7 @@ latest_rssi = defaultdict(dict)
 rssi_lock   = threading.Lock()
 
 # ── Position store — written by prediction thread, read by plot ───────────────
-# tag_positions[tag_id] = {"lstm": (x,y,z), "svm": (x,y,z), "rf": (x,y,z)}
+# tag_positions[tag_id] = {"lstm": (x,y), "svm": (x,y), "rf": (x,y)}
 tag_positions = {}
 pos_lock      = threading.Lock()
 
@@ -183,16 +183,10 @@ def prediction_loop():
         with pos_lock:
             if target not in tag_positions:
                 tag_positions[target] = {}
-            tag_positions[target]["svm"] = (
-                svm_result["x"], svm_result["y"], svm_result["z"]
-            )
-            tag_positions[target]["rf"] = (
-                rf_result["x"], rf_result["y"], rf_result["z"]
-            )
+            tag_positions[target]["svm"]  = (svm_result["x"],  svm_result["y"])
+            tag_positions[target]["rf"]   = (rf_result["x"],   rf_result["y"])
             if lstm_result is not None:
-                tag_positions[target]["lstm"] = (
-                    lstm_result["x"], lstm_result["y"], lstm_result["z"]
-                )
+                tag_positions[target]["lstm"] = (lstm_result["x"], lstm_result["y"])
 
         buf_status = processor.get_buffer_status(target)
 
@@ -203,13 +197,10 @@ def prediction_loop():
                 "buf_status":      buf_status,
                 "svm_x":  svm_result["x"],
                 "svm_y":  svm_result["y"],
-                "svm_z":  svm_result["z"],
                 "rf_x":   rf_result["x"],
                 "rf_y":   rf_result["y"],
-                "rf_z":   rf_result["z"],
                 "lstm_x": lstm_result["x"] if lstm_result else None,
                 "lstm_y": lstm_result["y"] if lstm_result else None,
-                "lstm_z": lstm_result["z"] if lstm_result else None,
             }
 
         cycle += 1
@@ -394,7 +385,7 @@ def run_plot():
                 for model_key, style in MODEL_STYLES.items():
                     if model_key not in pos:
                         continue
-                    mx, my, mz = pos[model_key]
+                    mx, my = pos[model_key]
                     ax_room.scatter(
                         mx, my,
                         s=style["size"], color=style["color"],
@@ -402,7 +393,7 @@ def run_plot():
                         label=f"{short} {style['label']}"
                     )
                     ax_room.annotate(
-                        f"{style['label'][:4]}\n({mx:.1f},{my:.1f},{mz:.1f})",
+                        f"{style['label'][:4]}\n({mx:.1f},{my:.1f})",
                         (mx, my),
                         textcoords="offset points", xytext=(7, 7),
                         fontsize=6.5, color=style["color"]
@@ -477,24 +468,21 @@ def run_plot():
             ax_pos.axis("off")
             if res_snap:
                 pos_rows  = []
-                col_hdrs  = ["Tag", "LSTM x", "LSTM y", "LSTM z",
-                              "SVM x",  "SVM y",  "SVM z",
-                              "RF x",   "RF y",   "RF z",  "Buf"]
+                col_hdrs  = ["Tag", "LSTM x", "LSTM y",
+                              "SVM x",  "SVM y",
+                              "RF x",   "RF y",  "Buf"]
 
                 for tag_id, r in res_snap.items():
                     short  = tag_id[-11:]
                     lx = f"{r['lstm_x']:.1f}" if r.get("lstm_x") is not None else "—"
                     ly = f"{r['lstm_y']:.1f}" if r.get("lstm_y") is not None else "—"
-                    lz = f"{r['lstm_z']:.1f}" if r.get("lstm_z") is not None else "—"
                     pos_rows.append([
                         short,
-                        lx, ly, lz,
+                        lx, ly,
                         f"{r.get('svm_x',0):.1f}",
                         f"{r.get('svm_y',0):.1f}",
-                        f"{r.get('svm_z',0):.1f}",
                         f"{r.get('rf_x', 0):.1f}",
                         f"{r.get('rf_y', 0):.1f}",
-                        f"{r.get('rf_z', 0):.1f}",
                         r.get("buf_status", "—"),
                     ])
 
@@ -508,9 +496,9 @@ def run_plot():
 
                 hdr_colors = (
                     ["#2c3e50"] +
-                    ["#922b21"] * 3 +   # LSTM
-                    ["#1a5276"] * 3 +   # SVM
-                    ["#1d6a39"] * 3 +   # RF
+                    ["#922b21"] * 2 +   # LSTM
+                    ["#1a5276"] * 2 +   # SVM
+                    ["#1d6a39"] * 2 +   # RF
                     ["#4a235a"]          # Buf
                 )
                 for c, hc in enumerate(hdr_colors):
@@ -560,19 +548,18 @@ def print_summary():
                   f"LSTM after {SEQ_LEN} cycles ({SEQ_LEN * PREDICTION_INTERVAL:.0f} s).")
         else:
             print(f"  {'TAG':<22}  "
-                  f"{'LSTM x':>7} {'LSTM y':>7} {'LSTM z':>7}  "
-                  f"{'SVM x':>7} {'SVM y':>7} {'SVM z':>7}  "
-                  f"{'RF x':>6} {'RF y':>6} {'RF z':>6}  BUF")
-            print("  " + "-" * 80)
+                  f"{'LSTM x':>7} {'LSTM y':>7}  "
+                  f"{'SVM x':>7} {'SVM y':>7}  "
+                  f"{'RF x':>6} {'RF y':>6}  BUF")
+            print("  " + "-" * 70)
             for tag_id, r in results.items():
                 lx = f"{r['lstm_x']:.2f}" if r.get("lstm_x") is not None else "  —   "
                 ly = f"{r['lstm_y']:.2f}" if r.get("lstm_y") is not None else "  —   "
-                lz = f"{r['lstm_z']:.2f}" if r.get("lstm_z") is not None else "  —   "
                 print(
                     f"  {tag_id:<22}  "
-                    f"{lx:>7} {ly:>7} {lz:>7}  "
-                    f"{r.get('svm_x',0):>7.2f} {r.get('svm_y',0):>7.2f} {r.get('svm_z',0):>7.2f}  "
-                    f"{r.get('rf_x',0):>6.2f} {r.get('rf_y',0):>6.2f} {r.get('rf_z',0):>6.2f}  "
+                    f"{lx:>7} {ly:>7}  "
+                    f"{r.get('svm_x',0):>7.2f} {r.get('svm_y',0):>7.2f}  "
+                    f"{r.get('rf_x',0):>6.2f} {r.get('rf_y',0):>6.2f}  "
                     f"{r.get('buf_status','—')}"
                 )
     print(f"\n  Gateway: {corrector.get_status()}")

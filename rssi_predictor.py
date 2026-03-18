@@ -4,40 +4,37 @@ PSO-LSTM Position Predictor (Inference Module)
 
 Loads the trained PSO-LSTM model and runs real-time inference.
 
-The model was trained with:
-    - Input : (1, SEQ_LEN=8, N_FEATURES=20) — temporal sliding window
-    - Output: (1, 3) — normalized (x, y, z) coordinates in [0, 1]
+Model trained with:
+    Input  : (1, SEQ_LEN=8, N_FEATURES=70) — temporal sliding window
+    Output : (1, 2) — normalized (x, y) floor coordinates in [0, 1]
 
-predict() denormalizes the output to actual room coordinates in meters
-and returns a confidence label based on the average RSSI quality of the
-most recent feature window.
+predict() denormalises to actual metres and returns a confidence label.
+Z is intentionally excluded — only the 2D floor plan is tracked and plotted.
 """
 
 import torch
 import numpy as np
 from LSTM import LSTMModel
 from config import (
-    N_FEATURES, HIDDEN_SIZE, NUM_LAYERS, DROPOUT,
+    N_FEATURES, N_OUTPUTS, HIDDEN_SIZE, NUM_LAYERS, DROPOUT,
     MODEL_PATH, RSSI_MIN, RSSI_MAX,
-    ROOM_W, ROOM_H, ROOM_Z
+    ROOM_W, ROOM_H,
 )
 
 
 class PositionPredictor:
     """
-    Inference wrapper for the PSO-LSTM 3D positioning model.
+    Inference wrapper for the PSO-LSTM 2D positioning model.
 
     Input:
-        sequence : np.ndarray shape (SEQ_LEN, N_FEATURES=20)
-                   Normalized, gateway-corrected RSSI feature vectors
-                   representing a temporal sliding window of RSSI history.
+        sequence : np.ndarray shape (SEQ_LEN, N_FEATURES)
+                   Normalised, gateway-corrected RSSI feature vectors.
 
-    Output (predict() return dict):
-        x          : estimated X coordinate in meters
-        y          : estimated Y coordinate in meters
-        z          : estimated Z coordinate in meters
-        confidence : signal quality label derived from mean RSSI feature
-        zone       : spatial zone label based on (x, y) position
+    Output (predict() → dict):
+        x          : estimated X coordinate in metres
+        y          : estimated Y coordinate in metres
+        confidence : signal quality label from mean RSSI
+        zone       : NORTH/SOUTH-EAST/WEST quadrant label
     """
 
     def __init__(self):
@@ -48,7 +45,7 @@ class PositionPredictor:
             input_size  = N_FEATURES,
             hidden_size = HIDDEN_SIZE,
             num_layers  = NUM_LAYERS,
-            output_size = 3,          # predict (x, y, z)
+            output_size = N_OUTPUTS,   # 2 — (x, y)
             dropout     = DROPOUT
         ).to(self.device)
 
@@ -74,65 +71,45 @@ class PositionPredictor:
         Run LSTM inference on a temporal RSSI sequence.
 
         Args:
-            sequence : np.ndarray of shape (SEQ_LEN, N_FEATURES)
-                       Each row is a 20-dim feature vector
-                       [mean, std, min, max, count] × 4 stations,
-                       computed from gateway-corrected RSSI readings.
+            sequence : np.ndarray shape (SEQ_LEN, N_FEATURES)
 
         Returns:
-            dict with keys: x, y, z, confidence, zone
+            dict with keys: x, y, confidence, zone
         """
-        # Add batch dimension: (1, SEQ_LEN, N_FEATURES)
-        x = torch.tensor(sequence, dtype=torch.float32) \
-                  .unsqueeze(0).to(self.device)
+        x_t = torch.tensor(sequence, dtype=torch.float32) \
+                    .unsqueeze(0).to(self.device)
 
         with torch.no_grad():
-            output = self.model(x)   # (1, 3) — normalized coordinates
+            output = self.model(x_t)   # (1, 2)
 
-        # Denormalize from [0, 1] to actual room meters
         pred = output.squeeze().cpu().numpy()
         x_m  = float(np.clip(pred[0], 0.0, 1.0)) * ROOM_W
         y_m  = float(np.clip(pred[1], 0.0, 1.0)) * ROOM_H
-        z_m  = float(np.clip(pred[2], 0.0, 1.0)) * ROOM_Z
 
-        # Estimate signal quality from mean RSSI features in the last timestep
-        # The mean features are at indices 0, 5, 10, 15 (first of each 5-stat block)
-        last_step    = sequence[-1]   # most recent time step
-        mean_features = [last_step[i * 5] for i in range(4)]
-        # Denormalize from [0,1] back to dBm for quality label
-        active = [f for f in mean_features if f > 0]
-        if active:
-            avg_norm_rssi = float(np.mean(active))
-            avg_rssi_dbm  = avg_norm_rssi * (RSSI_MAX - RSSI_MIN) + RSSI_MIN
-        else:
-            avg_rssi_dbm = -100.0
+        # Signal quality from mean RSSI features in the last timestep
+        last_step     = sequence[-1]
+        mean_features = [last_step[i * 5] for i in range(N_FEATURES // 5)]
+        active        = [f for f in mean_features if f > 0]
+        avg_rssi_dbm  = (
+            float(np.mean(active)) * (RSSI_MAX - RSSI_MIN) + RSSI_MIN
+            if active else -100.0
+        )
 
         return {
             "x":          round(x_m, 3),
             "y":          round(y_m, 3),
-            "z":          round(z_m, 3),
             "confidence": self._confidence_label(avg_rssi_dbm),
-            "zone":       self._zone_label(x_m, y_m)
+            "zone":       self._zone_label(x_m, y_m),
         }
 
-    # ── Label Helpers ─────────────────────────────────────────────────────
-
     def _confidence_label(self, rssi_dbm: float) -> str:
-        """Map average RSSI to a signal quality label."""
-        if rssi_dbm >= -60:  return "EXCELLENT"
-        if rssi_dbm >= -70:  return "GOOD"
-        if rssi_dbm >= -80:  return "FAIR"
-        if rssi_dbm >= -90:  return "WEAK"
+        if rssi_dbm >= -60: return "EXCELLENT"
+        if rssi_dbm >= -70: return "GOOD"
+        if rssi_dbm >= -80: return "FAIR"
+        if rssi_dbm >= -90: return "WEAK"
         return "VERY_WEAK"
 
     def _zone_label(self, x: float, y: float) -> str:
-        """
-        Assign a spatial zone label from (x, y) position.
-        Room is divided into a 2×2 grid.
-        """
-        mid_x = ROOM_W / 2.0
-        mid_y = ROOM_H / 2.0
-
-        ns = "NORTH" if y >= mid_y else "SOUTH"
-        ew = "EAST"  if x >= mid_x else "WEST"
+        ns = "NORTH" if y >= ROOM_H / 2.0 else "SOUTH"
+        ew = "EAST"  if x >= ROOM_W / 2.0 else "WEST"
         return f"{ns}-{ew}"

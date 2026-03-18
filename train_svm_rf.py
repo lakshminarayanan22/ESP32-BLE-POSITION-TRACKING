@@ -9,7 +9,7 @@ the PSO-LSTM pipeline. Both models use a single 70-dim feature snapshot
 GridSearchCV Strategy
 ---------------------
 SVM (RBF kernel) — MultiOutputRegressor wrapper:
-    Trains one SVR per output dimension (x, y, z).
+    Trains one SVR per output dimension (x, y).
     Exhaustive grid over C, gamma, epsilon.
     Large C  → narrow margin, fits training data closely.
     Small C  → wide margin, more regularisation.
@@ -17,7 +17,7 @@ SVM (RBF kernel) — MultiOutputRegressor wrapper:
     epsilon  → insensitive tube width around predictions.
 
 Random Forest — native multi-output:
-    Predicts (x, y, z) in a single call via ensemble voting.
+    Predicts (x, y) in a single call via ensemble voting.
     Grid covers n_estimators, depth, split criteria, feature sampling,
     impurity threshold, and bootstrap strategy.
 
@@ -48,7 +48,7 @@ from sklearn.preprocessing     import StandardScaler
 
 from config import (
     N_FEATURES, RSSI_MIN, RSSI_MAX,
-    ROOM_W, ROOM_H, ROOM_Z,
+    ROOM_W, ROOM_H,
     STATION_POSITIONS,
     SVM_MODEL_PATH, RF_MODEL_PATH,
 )
@@ -60,31 +60,18 @@ TRAIN_SPLIT       = 0.8
 CV_FOLDS          = 5       # cross-validation folds for GridSearchCV
 
 STATION_ORDER     = list(STATION_POSITIONS.keys())
-RSSI_COLS         = ["rssi_value_1", "rssi_value_2",
-                      "rssi_value_3", "rssi_value_4"]
 STATS_PER_STATION = 5
+RSSI_WINDOW_SIZE  = 4   # matches tag_processing.py — for count normalisation
+
+# CSV column for each station: rssi_11, rssi_12, ..., rssi_50
+RSSI_COLS_NEW     = [f"rssi_{sid.replace('STATION','')}" for sid in STATION_ORDER]
 
 # ── Normalize / Denormalize ───────────────────────────────────────────────────
 def norm_rssi(v):  return (v - RSSI_MIN) / (RSSI_MAX - RSSI_MIN)
 def norm_x(v):     return v / ROOM_W
 def norm_y(v):     return v / ROOM_H
-def norm_z(v):     return v / ROOM_Z
 def denorm_x(v):   return v * ROOM_W
 def denorm_y(v):   return v * ROOM_H
-def denorm_z(v):   return v * ROOM_Z
-
-
-# ── CSV Helpers ───────────────────────────────────────────────────────────────
-def extract_rssi_values(row: dict) -> list:
-    values = []
-    for col in RSSI_COLS:
-        raw = row.get(col, "").strip()
-        if raw:
-            try:
-                values.append(float(raw))
-            except ValueError:
-                pass
-    return values
 
 
 def compute_station_stats(rssi_values: list) -> list:
@@ -101,7 +88,7 @@ def compute_station_stats(rssi_values: list) -> list:
     norm_std   = std_v / ((RSSI_MAX - RSSI_MIN) / 2.0)
     norm_min   = norm_rssi(min_v)
     norm_max   = norm_rssi(max_v)
-    norm_count = count_v / len(RSSI_COLS)
+    norm_count = count_v / float(RSSI_WINDOW_SIZE)
     return [norm_mean, norm_std, norm_min, norm_max, norm_count]
 
 
@@ -109,17 +96,21 @@ def compute_station_stats(rssi_values: list) -> list:
 def load_dataset(filepath: str):
     """
     Load training CSV and return:
-        X : np.ndarray  (N, N_FEATURES)  — per-interval feature vectors
-        y : np.ndarray  (N, 3)           — normalised (x, y, z) targets
+        X : np.ndarray  (N, N_FEATURES=70)  — per-snapshot feature vectors
+        y : np.ndarray  (N, 2)              — normalised (x, y) targets
 
-    Unlike the LSTM pipeline, no temporal windowing is applied here.
-    SVM and RF predict from a single-timestep snapshot.
+    CSV format (one row = one complete snapshot):
+        tag_id, rssi_11, rssi_12, rssi_13, rssi_14,
+                rssi_41, rssi_42, rssi_43, rssi_44, rssi_45,
+                rssi_46, rssi_47, rssi_48, rssi_49, rssi_50,
+                true_x, true_y, true_z
+
+    Each RSSI column holds one reading for that station.
+    5-stat feature [mean,std,min,max,count] is computed from the single
+    value; std=0 and count=1/RSSI_WINDOW_SIZE (matching inference).
     """
-    raw    = defaultdict(lambda: {sid: [] for sid in STATION_ORDER})
-    coords = {}
-
-    total_rows = skipped_sta = skipped_rssi = 0
-    found_sta  = set()
+    X_list, y_list = [], []
+    total_rows = skipped = 0
 
     with open(filepath, "r") as f:
         reader = csv.DictReader(f)
@@ -127,70 +118,45 @@ def load_dataset(filepath: str):
 
         for row in reader:
             total_rows += 1
-            start   = row.get("start_time", "").strip()
-            end     = row.get("end_time",   "").strip()
-            station = row.get("station",    "").upper().strip()
-
-            if not start or not end:
+            try:
+                tx = float(row["true_x"])
+                ty = float(row["true_y"])
+            except (KeyError, ValueError):
+                skipped += 1
                 continue
 
-            if station not in STATION_ORDER:
-                skipped_sta += 1
-                found_sta.add(station)
-                continue
-
-            rssi_values = extract_rssi_values(row)
-            if not rssi_values:
-                skipped_rssi += 1
-                continue
-
-            raw[(start, end)][station].extend(rssi_values)
-
-            key = (start, end)
-            if key not in coords:
+            feature_vec = []
+            for col in RSSI_COLS_NEW:
+                raw = row.get(col, "").strip()
                 try:
-                    coords[key] = (
-                        float(row["true_x"]),
-                        float(row["true_y"]),
-                        float(row["true_z"]),
-                    )
-                except (KeyError, ValueError):
-                    pass
+                    rssi_val = float(raw)
+                    if -120 <= rssi_val <= 0:
+                        stats = compute_station_stats([rssi_val])
+                    else:
+                        stats = [0.0, 0.0, 0.0, 0.0, 0.0]
+                except (ValueError, TypeError):
+                    stats = [0.0, 0.0, 0.0, 0.0, 0.0]
+                feature_vec.extend(stats)
 
-    print(f"[DATA] Rows read          : {total_rows}")
-    print(f"[DATA] Skipped (station)  : {skipped_sta}")
-    print(f"[DATA] Skipped (no RSSI)  : {skipped_rssi}")
-    if found_sta - set(STATION_ORDER):
-        print(f"[DATA] Unknown stations   : {found_sta - set(STATION_ORDER)}")
-    print(f"[DATA] Valid intervals    : {len(raw)}\n")
+            if len(feature_vec) != N_FEATURES:
+                skipped += 1
+                continue
 
-    X_list, y_list = [], []
+            X_list.append(feature_vec)
+            y_list.append([norm_x(tx), norm_y(ty)])
 
-    for (start, end), stn_readings in sorted(raw.items()):
-        key = (start, end)
-        if key not in coords:
-            continue
-
-        feature_vec = []
-        for sid in STATION_ORDER:
-            feature_vec.extend(compute_station_stats(stn_readings[sid]))
-
-        assert len(feature_vec) == len(STATION_ORDER) * STATS_PER_STATION, \
-            f"Feature size {len(feature_vec)} ≠ expected {N_FEATURES}"
-
-        tx, ty, tz = coords[key]
-        X_list.append(feature_vec)
-        y_list.append([norm_x(tx), norm_y(ty), norm_z(tz)])
+    print(f"[DATA] Rows read      : {total_rows}")
+    print(f"[DATA] Skipped        : {skipped}")
+    print(f"[DATA] Valid samples  : {len(X_list)}\n")
 
     X = np.array(X_list, dtype=np.float64)
     y = np.array(y_list, dtype=np.float64)
 
-    print(f"[DATA] Dataset shape : X={X.shape}  y={y.shape}")
-    print(f"[DATA] Feature dims  : {len(STATION_ORDER)} stations "
+    print(f"[DATA] Dataset shape  : X={X.shape}  y={y.shape}")
+    print(f"[DATA] Feature dims   : {len(STATION_ORDER)} stations "
           f"× {STATS_PER_STATION} stats = {X.shape[1]}")
-    print(f"[DATA] Target range  : x∈[{y[:,0].min():.3f},{y[:,0].max():.3f}]  "
-          f"y∈[{y[:,1].min():.3f},{y[:,1].max():.3f}]  "
-          f"z∈[{y[:,2].min():.3f},{y[:,2].max():.3f}]\n")
+    print(f"[DATA] Target range   : x∈[{y[:,0].min():.3f},{y[:,0].max():.3f}]  "
+          f"y∈[{y[:,1].min():.3f},{y[:,1].max():.3f}]\n")
     return X, y
 
 
@@ -268,25 +234,23 @@ def train_svm(X_train, y_train, X_val, y_val):
     # Evaluate on validation set
     y_pred    = grid_svm.predict(X_val)
     pred_m    = np.stack([denorm_x(y_pred[:,0]),
-                          denorm_y(y_pred[:,1]),
-                          denorm_z(y_pred[:,2])], axis=1)
+                          denorm_y(y_pred[:,1])], axis=1)
     true_m    = np.stack([denorm_x(y_val[:,0]),
-                          denorm_y(y_val[:,1]),
-                          denorm_z(y_val[:,2])], axis=1)
-    errors_3d = np.sqrt(np.sum((pred_m - true_m)**2, axis=1))
+                          denorm_y(y_val[:,1])], axis=1)
+    errors_2d = np.sqrt(np.sum((pred_m - true_m)**2, axis=1))
 
     print(f"\n[SVM] Validation results (denormalized):")
-    print(f"       Mean 3D error  : {np.mean(errors_3d):.3f} m")
-    print(f"       Median error   : {np.median(errors_3d):.3f} m")
-    print(f"       Max error      : {np.max(errors_3d):.3f} m")
-    print(f"       Error < 0.5 m  : {np.mean(errors_3d < 0.5)*100:.1f}%")
-    print(f"       Error < 1.0 m  : {np.mean(errors_3d < 1.0)*100:.1f}%")
-    print(f"       Error < 2.0 m  : {np.mean(errors_3d < 2.0)*100:.1f}%")
+    print(f"       Mean 2D error  : {np.mean(errors_2d):.3f} m")
+    print(f"       Median error   : {np.median(errors_2d):.3f} m")
+    print(f"       Max error      : {np.max(errors_2d):.3f} m")
+    print(f"       Error < 0.5 m  : {np.mean(errors_2d < 0.5)*100:.1f}%")
+    print(f"       Error < 1.0 m  : {np.mean(errors_2d < 1.0)*100:.1f}%")
+    print(f"       Error < 2.0 m  : {np.mean(errors_2d < 2.0)*100:.1f}%")
 
     joblib.dump(grid_svm.best_estimator_, SVM_MODEL_PATH)
     print(f"\n[SVM] Model saved → {SVM_MODEL_PATH}")
 
-    return grid_svm, pred_m, true_m, errors_3d
+    return grid_svm, pred_m, true_m, errors_2d
 
 
 # ── GridSearchCV — Random Forest ─────────────────────────────────────────────
@@ -361,20 +325,18 @@ def train_rf(X_train, y_train, X_val, y_val):
     # Evaluate on validation set
     y_pred    = grid_rf.predict(X_val)
     pred_m    = np.stack([denorm_x(y_pred[:,0]),
-                          denorm_y(y_pred[:,1]),
-                          denorm_z(y_pred[:,2])], axis=1)
+                          denorm_y(y_pred[:,1])], axis=1)
     true_m    = np.stack([denorm_x(y_val[:,0]),
-                          denorm_y(y_val[:,1]),
-                          denorm_z(y_val[:,2])], axis=1)
-    errors_3d = np.sqrt(np.sum((pred_m - true_m)**2, axis=1))
+                          denorm_y(y_val[:,1])], axis=1)
+    errors_2d = np.sqrt(np.sum((pred_m - true_m)**2, axis=1))
 
     print(f"\n[RF]  Validation results (denormalized):")
-    print(f"       Mean 3D error  : {np.mean(errors_3d):.3f} m")
-    print(f"       Median error   : {np.median(errors_3d):.3f} m")
-    print(f"       Max error      : {np.max(errors_3d):.3f} m")
-    print(f"       Error < 0.5 m  : {np.mean(errors_3d < 0.5)*100:.1f}%")
-    print(f"       Error < 1.0 m  : {np.mean(errors_3d < 1.0)*100:.1f}%")
-    print(f"       Error < 2.0 m  : {np.mean(errors_3d < 2.0)*100:.1f}%")
+    print(f"       Mean 2D error  : {np.mean(errors_2d):.3f} m")
+    print(f"       Median error   : {np.median(errors_2d):.3f} m")
+    print(f"       Max error      : {np.max(errors_2d):.3f} m")
+    print(f"       Error < 0.5 m  : {np.mean(errors_2d < 0.5)*100:.1f}%")
+    print(f"       Error < 1.0 m  : {np.mean(errors_2d < 1.0)*100:.1f}%")
+    print(f"       Error < 2.0 m  : {np.mean(errors_2d < 2.0)*100:.1f}%")
 
     # Feature importance (RF-specific)
     importances = grid_rf.best_estimator_.feature_importances_
@@ -392,21 +354,21 @@ def train_rf(X_train, y_train, X_val, y_val):
     joblib.dump(grid_rf.best_estimator_, RF_MODEL_PATH)
     print(f"\n[RF]  Model saved → {RF_MODEL_PATH}")
 
-    return grid_rf, pred_m, true_m, errors_3d
+    return grid_rf, pred_m, true_m, errors_2d
 
 
 # ── Plot ──────────────────────────────────────────────────────────────────────
 def plot_comparison(svm_pred, svm_true, svm_err,
                     rf_pred,  rf_true,  rf_err):
     """Side-by-side scatter plots and CDF error curves for SVM vs RF."""
-    fig, axes = plt.subplots(2, 4, figsize=(24, 10))
+    fig, axes = plt.subplots(2, 3, figsize=(18, 10))
     limit = min(200, len(svm_pred))
 
     models = [("SVM (RBF)", svm_pred[:limit], svm_true[:limit], svm_err),
               ("RandomForest", rf_pred[:limit], rf_true[:limit], rf_err)]
 
     for row, (name, pred, true, err) in enumerate(models):
-        for col, label in enumerate(["X", "Y", "Z"]):
+        for col, label in enumerate(["X", "Y"]):
             ax = axes[row][col]
             ax.scatter(true[:, col], pred[:, col],
                        alpha=0.5, s=15, c="steelblue" if row == 0 else "darkorange")
@@ -419,8 +381,8 @@ def plot_comparison(svm_pred, svm_true, svm_err,
             ax.legend(fontsize=8)
             ax.grid(True, alpha=0.3)
 
-        # CDF of 3D errors
-        ax = axes[row][3]
+        # CDF of 2D errors
+        ax = axes[row][2]
         sorted_err = np.sort(err)
         cdf        = np.arange(1, len(sorted_err) + 1) / len(sorted_err)
         color      = "steelblue" if row == 0 else "darkorange"
@@ -429,13 +391,13 @@ def plot_comparison(svm_pred, svm_true, svm_err,
                    label=f"Mean={np.mean(err):.2f}m")
         ax.axvline(np.median(err), color="green", linestyle="--",
                    label=f"Median={np.median(err):.2f}m")
-        ax.set_xlabel("3D Position Error (m)")
+        ax.set_xlabel("2D Position Error (m)")
         ax.set_ylabel("CDF")
         ax.set_title(f"{name} — Error CDF")
         ax.legend(fontsize=8)
         ax.grid(True, alpha=0.3)
 
-    plt.suptitle("SVM vs Random Forest — Indoor Positioning Accuracy", fontsize=14)
+    plt.suptitle("SVM vs Random Forest — 2D Indoor Positioning Accuracy", fontsize=14)
     plt.tight_layout()
     plt.savefig(PLOT_PATH, dpi=150)
     print(f"\n[PLOT] Saved → {PLOT_PATH}")
