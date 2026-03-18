@@ -54,7 +54,7 @@ RSSI_MAX =    0.0
 TRAINING_DATA_PATH = "training_data.json"
 JSON_FILE          = "beacon_data.json"
 JSON_REPEAT        = 1
-TARGET_TAG         = "d6:06:9c:7e:ba:f7"
+TARGET_TAGS        = ["d6:06:9c:7e:ba:f7"]   # list of BLE tag MAC addresses to track
 
 # ── Prediction Cycle ───────────────────────────────────
 # Each BLE station publishes one MQTT payload every 3 seconds.

@@ -42,7 +42,7 @@ from config import (
     MQTT_BROKER, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD,
     STATION_IDS, MQTT_TOPIC_PATTERN,
     STATION_POSITIONS, ROOM_W, ROOM_H, ROOM_Z,
-    SEQ_LEN, TARGET_TAG, PREDICTION_INTERVAL,
+    SEQ_LEN, TARGET_TAGS, PREDICTION_INTERVAL,
 )
 from tag_processing     import DataProcessor
 from rssi_predictor     import PositionPredictor
@@ -59,6 +59,9 @@ corrector     = GatewayCorrection()
 results       = {}       # tag_id → latest combined prediction dict
 lock          = threading.Lock()
 STATION_ORDER = list(STATION_POSITIONS.keys())
+
+# Precomputed lowercase tag set for O(1) membership tests
+TARGET_TAGS_LOWER = [t.lower() for t in TARGET_TAGS]
 
 # ── Raw RSSI store — ingestion only, used for display table ───────────────────
 latest_rssi = defaultdict(dict)
@@ -93,9 +96,9 @@ def process_payload(payload: dict):
         tag_id = tag.get("tagId", "").lower().strip()
         rssi   = tag.get("rssi", None)
 
-        if tag_id != TARGET_TAG.lower():
-            continue
         if not tag_id or rssi is None:
+            continue
+        if tag_id not in TARGET_TAGS_LOWER:
             continue
         if not (-120 <= rssi <= 0):
             continue
@@ -131,87 +134,81 @@ def prediction_loop():
     By then all stations visible in this BLE cycle have sent their payload
     and processor's RSSI windows are fully populated for this cycle.
 
-    Sequence per wake:
+    Processes every tag in TARGET_TAGS each wake:
         1. Build one 70-dim feature vector from all station windows.
-        2. Count active stations — skip cycle if none visible yet.
+        2. Count active stations — skip tag if none visible yet.
         3. SVM + RF predict from the single snapshot (instant).
         4. Push snapshot into LSTM temporal buffer (1 entry per cycle).
            When buffer reaches SEQ_LEN (8 cycles = 24 s), LSTM predicts.
         5. Write results to tag_positions and results dicts.
     """
-    target = TARGET_TAG.lower()
-    cycle  = 0
+    cycle = 0
 
     # Give MQTT time to receive first readings before attempting predictions
     time.sleep(PREDICTION_INTERVAL)
 
     while True:
         cycle_start = time.time()
-
-        # ── 1. Build complete feature vector ──────────────────────────────
-        feat_vec = processor.build_feature_vector(target)  # list[70 floats]
-
-        # ── 2. Count stations that have data this cycle ────────────────────
-        # mean feature is index 0, 5, 10, … (first of each 5-stat block)
-        active_stations = sum(
-            1 for i in range(0, len(feat_vec), 5)
-            if feat_vec[i] > 0   # norm_mean > 0 → station has readings
-        )
-
-        if active_stations == 0:
-            # No RSSI data from any station yet — wait for next cycle
-            elapsed = time.time() - cycle_start
-            time.sleep(max(0.0, PREDICTION_INTERVAL - elapsed))
-            continue
-
-        feat_arr = np.array(feat_vec, dtype=np.float64)
-
-        # ── 3. SVM + RF: single snapshot ──────────────────────────────────
-        svm_result = svm_pred.predict(feat_arr)
-        rf_result  = rf_pred.predict(feat_arr)
-
-        # ── 4. LSTM: push one entry per cycle into temporal buffer ─────────
-        # push_to_buffer internally builds the same feature vector and
-        # appends it; returns (SEQ_LEN, 70) array when buffer is full.
-        sequence = processor.push_to_buffer(target)
-
-        lstm_result = None
-        if sequence is not None:
-            lstm_result = lstm_pred.predict(sequence)
-
-        # ── 5. Write to shared position and result stores ──────────────────
-        with pos_lock:
-            if target not in tag_positions:
-                tag_positions[target] = {}
-            tag_positions[target]["svm"]  = (svm_result["x"],  svm_result["y"])
-            tag_positions[target]["rf"]   = (rf_result["x"],   rf_result["y"])
-            if lstm_result is not None:
-                tag_positions[target]["lstm"] = (lstm_result["x"], lstm_result["y"])
-
-        buf_status = processor.get_buffer_status(target)
-
-        with lock:
-            results[target] = {
-                "coverage":        processor.get_station_coverage(target),
-                "active_stations": active_stations,
-                "buf_status":      buf_status,
-                "svm_x":  svm_result["x"],
-                "svm_y":  svm_result["y"],
-                "rf_x":   rf_result["x"],
-                "rf_y":   rf_result["y"],
-                "lstm_x": lstm_result["x"] if lstm_result else None,
-                "lstm_y": lstm_result["y"] if lstm_result else None,
-            }
-
         cycle += 1
-        lstm_str = (f"LSTM=({lstm_result['x']:.1f},{lstm_result['y']:.1f})"
-                    if lstm_result else f"LSTM=warming[{buf_status}]")
-        print(
-            f"[PRED] Cycle {cycle:4d}  stations={active_stations:2d}/14  "
-            f"SVM=({svm_result['x']:.1f},{svm_result['y']:.1f})  "
-            f"RF=({rf_result['x']:.1f},{rf_result['y']:.1f})  "
-            f"{lstm_str}"
-        )
+
+        for target in TARGET_TAGS_LOWER:
+            # ── 1. Build complete feature vector ──────────────────────────
+            feat_vec = processor.build_feature_vector(target)  # list[70 floats]
+
+            # ── 2. Count stations that have data this cycle ────────────────
+            # mean feature is index 0, 5, 10, … (first of each 5-stat block)
+            active_stations = sum(
+                1 for i in range(0, len(feat_vec), 5)
+                if feat_vec[i] > 0   # norm_mean > 0 → station has readings
+            )
+
+            if active_stations == 0:
+                continue   # no RSSI for this tag yet — skip, try next tag
+
+            feat_arr = np.array(feat_vec, dtype=np.float64)
+
+            # ── 3. SVM + RF: single snapshot ──────────────────────────────
+            svm_result = svm_pred.predict(feat_arr)
+            rf_result  = rf_pred.predict(feat_arr)
+
+            # ── 4. LSTM: push one entry per cycle into temporal buffer ─────
+            sequence    = processor.push_to_buffer(target)
+            lstm_result = lstm_pred.predict(sequence) if sequence is not None else None
+
+            # ── 5. Write to shared position and result stores ──────────────
+            with pos_lock:
+                if target not in tag_positions:
+                    tag_positions[target] = {}
+                tag_positions[target]["svm"]  = (svm_result["x"],  svm_result["y"])
+                tag_positions[target]["rf"]   = (rf_result["x"],   rf_result["y"])
+                if lstm_result is not None:
+                    tag_positions[target]["lstm"] = (lstm_result["x"], lstm_result["y"])
+
+            buf_status = processor.get_buffer_status(target)
+
+            with lock:
+                results[target] = {
+                    "coverage":        processor.get_station_coverage(target),
+                    "active_stations": active_stations,
+                    "buf_status":      buf_status,
+                    "svm_x":  svm_result["x"],
+                    "svm_y":  svm_result["y"],
+                    "rf_x":   rf_result["x"],
+                    "rf_y":   rf_result["y"],
+                    "lstm_x": lstm_result["x"] if lstm_result else None,
+                    "lstm_y": lstm_result["y"] if lstm_result else None,
+                }
+
+            short_tag = target[-8:]
+            lstm_str  = (f"LSTM=({lstm_result['x']:.1f},{lstm_result['y']:.1f})"
+                         if lstm_result else f"LSTM=warming[{buf_status}]")
+            print(
+                f"[PRED] Cycle {cycle:4d}  tag={short_tag}  "
+                f"stations={active_stations:2d}/14  "
+                f"SVM=({svm_result['x']:.1f},{svm_result['y']:.1f})  "
+                f"RF=({rf_result['x']:.1f},{rf_result['y']:.1f})  "
+                f"{lstm_str}"
+            )
 
         # Sleep for the remainder of this 3-second cycle
         elapsed = time.time() - cycle_start
@@ -582,6 +579,9 @@ if __name__ == "__main__":
     print(f"  Broker        : {MQTT_BROKER}:{MQTT_PORT}")
     print(f"  Room          : {ROOM_W} m × {ROOM_H} m × {ROOM_Z} m")
     print(f"  Stations      : {len(STATION_ORDER)}")
+    print(f"  Tracked tags  : {len(TARGET_TAGS)}")
+    for t in TARGET_TAGS:
+        print(f"                  {t}")
     print(f"  Cycle period  : {PREDICTION_INTERVAL:.0f} s  (matches MQTT rate)")
     print(f"  Models        : PSO-LSTM (needs {SEQ_LEN} cycles = "
           f"{SEQ_LEN * PREDICTION_INTERVAL:.0f} s warm-up)")
