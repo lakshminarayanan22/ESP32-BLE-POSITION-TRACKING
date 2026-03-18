@@ -56,6 +56,15 @@ JSON_FILE          = "beacon_data.json"
 JSON_REPEAT        = 1
 TARGET_TAG         = "d6:06:9c:7e:ba:f7"
 
+# ── Prediction Cycle ───────────────────────────────────
+# Each BLE station publishes one MQTT payload every 3 seconds.
+# Predictions are triggered by a dedicated timer thread at the same rate,
+# AFTER the ingestion window has closed. This ensures all stations that
+# are visible in a cycle have contributed their RSSI before any model runs.
+# Setting this to match the station publish interval prevents partial/empty
+# feature vectors from reaching SVM, RF, and PSO-LSTM.
+PREDICTION_INTERVAL = 3.0   # seconds — must match station publish rate
+
 # ── PSO Hyperparameter Optimization ───────────────────
 # PSO finds the optimal LSTM config before Adam fine-tuning (PSO-Adam hybrid).
 # Each particle encodes: [hidden_size, num_layers, log10(lr), dropout]
